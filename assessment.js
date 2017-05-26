@@ -59,58 +59,101 @@ var snake = {
 };
 
 for (var variable in snake) {
-  if (snake[variable][0] == 's') {
+  if (variable[0] === 's') {
     snake[variable] = 's';
   }
-}
-//  var keys = Object.keys(snake);
-// // for (var i = 0; i < keys.length; i++) {
-// // 	if ( keys[i][0] == 's') {
-// 	//
-// 	// }
-// // }
-// console.log(keys[0][0] == 's');
-//#7 Create an array of strings that are the 7 primary colors in the rainbow - red, orange, yellow, green, blue, indigo, violet (lower-case). Call your array rainbowColors
 
+}
+console.log(snake['sliters'][0]);
+// for (var variable in snake) {
+//   if (Object.values(snake[variable]) == 's') {
+//     snake[variable] = 's';
+//   }
+// }
+
+//#7 Create an array of strings that are the 7 primary colors in the rainbow - red, orange, yellow, green, blue, indigo, violet (lower-case). Call your array rainbowColors
+var rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 // #8 Using this array do the following
 var heroes = ['superman', 'batman', 'flash'];
 // add 'wonderwoman' to the end
-
+heroes.push('wonderwoman');
 // remove 'superman' and store him in a variable called firstHero
-
-// add 'spongebob' to the start of the array
-
-// remove 'flash' from the array and store him in a variable called secondHero
-
+var firstHero = heroes.shift();
+// // add 'spongebob' to the start of the array
+heroes.unshift('spongebob');
+// // remove 'flash' from the array and store him in a variable called secondHero
+// var index = heroes.indexOf('flash');
+// heroes.splice(index, 1);
+// heroes.splice(index)
 // leave batman in the array but put a copy of him on a variable called thirdHero
-
+var index = heroes.indexOf('batman');
+var thirdHero = heroes.slice(index, index + 1).join("");
 
 
 
 // #9 Write a function called addItem that takes in an array and an item, adds the item to
 // the array, and returns the array with the added item.
-
+function addItem(array, item) {
+  array.push(item);
+  return array;
+}
 
 // #10 Write a function called removeItem that takes in an array of strings, and a string.
-
+function removeItem(array, string) {
+  var newArr = array.slice();
+  for (var i = array.length - 1; i >= 0; i--) {
+    if (newArr[i] === string) {
+      newArr.splice(i, 1);
+    }
+  }
+  return newArr;
+}
 // Removes all instances of that string from the array. And return the modified array.
 // The order of the array should not be changed
 
 // #11 Write a function  called doubleTheFun that takes 1 parameter. It should double numbers, and
 // repeats strings. example 4->8, 2.5->5, 'Awesome'->'AwesomeAwesome'
+function doubleTheFun(one) {
+  var number = parseFloat(one);
+  if (typeof one === 'string' && isNaN(one)) {
+    return one + one;
+  } else {
 
+    return number + number;
+  }
 
+}
 
 // #12 Write function getValueOfProperty that takes in an object, and the name of a property on the object
 // return the value from the object that corresponds to the property
-
+function getValueOfProperty(object, property) {
+  return object[property];
+}
 
 // #13 Write a function called makeChatMessage that takes in a message and author as parameters
 // and returns an object with a message, author, and timestamp, that is
 // the current time as a Date object
+function makeChatMessage(message, author) {
 
+  return {
+    message: message,
+    author: author,
+    timestamp: new Date()
+  };
+}
 // #14 Create a function called coderTest that takes in an object that is a person. It looks to see if the person’s name is Jeremy and then changes the person object to have a property called lovesCode with a value of 10.  If their name is Brack set lovesCode to 0.  otherwise set lovesCode to 5.
+function coderTest(obj) {
+  for (var variable in obj) {
+    if (obj[variable] === 'Jeremy') {
+      obj.lovesCode = 10;
+    } else if (obj[variable] === 'Brack') {
+      obj.lovesCode = 0;
+    } else
+      obj.lovesCode = 5;
 
+  }
+  return obj;
+}
 
 // #15 Create a function called outside that takes in a temperature (number), a humidity(number), and a cloudiness(number), in that order. Using the following to return the correct values
 /*
@@ -120,6 +163,25 @@ var heroes = ['superman', 'batman', 'flash'];
     temperature over 80 or humidity over 50 or cloudiness over 50 - return "Hmm, probably not"
     Otherwise - return "I love outside"
 */
+function outside(temp, humidity, cloudiness) {
+  if (temp > 80 && humidity > 40) {
+    return "I'm all sweat";
+  }
+  if (temp < 40 && cloudiness > 60) {
+    return "I have icecicles";
+  }
+  if (temp > 80 && humidity < 40 && cloudiness < 20) {
+    return "I'm literally in the desert";
+  }
+  if (temp > 80 || humidity > 50 || cloudiness > 50) {
+    return "Hmm, probably not";
+  } else
+    return "I love outside";
+}
 
 // #16 Create a function called callerBack that takes in a function (holla) and a string parameter(back) and invokes it(holla) with the argument string(back) + ' back'."
 // example - If I call you with 'Give it' you should invoke holla with 'Give it back'
+function callerBack(holla, back) {
+  var backs = back + ' back'
+  return holla(backs);
+}
